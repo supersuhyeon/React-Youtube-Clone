@@ -6,6 +6,7 @@ export default class Youtube{
             baseURL: 'https://www.googleapis.com/youtube/v3',
             params: {key: process.env.REACT_APP_YOUTUBE_API_KEY}
         })
+      
     }
 
     async search(keyword){
@@ -20,8 +21,8 @@ export default class Youtube{
             type:'video',
             q: keyword
         }})
-    .then((res) => res.data.items)
-    .then(items => items.map((item)=>({...item, id:item.id.videoId}))) //popular과 동일한 데이터 문자열로 맞춰주기
+        .then((res) => res.data.items)
+        .then(items => items.map((item)=>({...item, id:item.id.videoId}))) //popular과 동일한 데이터 문자열로 맞춰주기
     }
 
     async #mostPopular(){
