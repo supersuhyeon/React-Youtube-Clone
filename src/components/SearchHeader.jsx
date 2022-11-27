@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
 import {BsSearch, BsYoutube} from 'react-icons/bs'
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function SearchHeader(){
     const {keyword} = useParams();
