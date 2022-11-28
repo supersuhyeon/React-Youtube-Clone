@@ -26,8 +26,16 @@ export default function SearchHeader(){
                 <h1 className='font-bold ml-2 text-3xl'>Youtube</h1>
             </Link>
             <form className='w-full flex justify-center' onSubmit={onSubmitHandler}>
-                <input className='w-7/12 p-2 outline-none bg-black text-gray-50' type="text" placeholder='Search...' value={text} onChange={(e)=>{return setText(e.target.value)}}/>
-                <button className='bg-zinc-600 px-4'><BsSearch></BsSearch></button>
+            <input
+            className='w-7/12 p-2 outline-none bg-black text-gray-50'
+            type='text'
+            placeholder='Search...'
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+             />
+            <button className='bg-zinc-600 px-4'>
+                <BsSearch className='text-white' />
+            </button>
             </form>
         </header>
     )

@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body.light {
+  @apply bg-zinc-100 text-gray-900;
+}
+
+body{
   width: 100vw;
   height: 100vh;
   @apply flex flex-col items-center;
