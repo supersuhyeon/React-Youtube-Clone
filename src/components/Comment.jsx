@@ -1,32 +1,27 @@
 import { useEffect, useRef, useState } from "react"
 import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from "react-icons/ai"
-import CommentAdd from "./CommentAdd"
 
-export default function Comment({comment}){
+export default function Comment({comment, onDelete}){
     const [isLiked, setIsLiked] = useState(false)
 
     const likedHandler = ()=>{
         setIsLiked((isLiked)=>{return !isLiked})
     }
 
-    const [disLiked, setDisIsLiked] = useState(false)
-
-    const dislikedHandler = ()=>{
-            setDisIsLiked((disLiked)=>{return !disLiked})
-        }
-
-
     const liRef = useRef()
-
     useEffect(()=>{
         liRef.current.scrollIntoView({behavior: 'smooth', block:'end'})
     },[comment])
 
-    const [clickedReply, setClickedReply] = useState(false)
+    const deleteHandler = ()=>{
+        onDelete(comment)
+    }
+
+
 
     return(
         <>
-        <li className="flex" ref={liRef}>
+        <li className="flex mb-3" ref={liRef}>
             <div className="mr-3">
                 <img className="w-10 h-10 rounded-full shadow-lg" src="/img/suhyeon.png" alt="" />
             </div>
@@ -35,18 +30,17 @@ export default function Comment({comment}){
                 <p className="font-bold">{comment.username}</p>
                 <p>{comment.text}</p>
 
+                <div className="flex flex-row items-center mt-1">
                 <button className="mr-1" onClick={likedHandler}>
                     {!isLiked && <AiOutlineLike></AiOutlineLike>}
                     {isLiked && <AiFillLike></AiFillLike>}
                 </button>
 
-                <button className="mr-1" onClick={dislikedHandler}>
-                    {!disLiked && <AiOutlineDislike></AiOutlineDislike>}
-                    {disLiked && <AiFillDislike></AiFillDislike>}
-                </button>
+               {isLiked && <span className="mr-2 text-xs">1</span>}
 
-                <button className="text-sm" onClick={()=>{return setClickedReply((clickedReply)=>{return !clickedReply})}}>Reply</button>
-                {clickedReply && <CommentAdd></CommentAdd>}
+                <button className="text-xs mr-2 bg-slate-400 rounded-full px-2">Reply</button>
+                <button className="text-xs bg-red-400 rounded-full px-2" onClick={deleteHandler}>Delete</button>
+                </div>
             </div>
         </li>
         </>
