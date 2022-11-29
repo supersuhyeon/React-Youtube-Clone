@@ -1,10 +1,10 @@
 import CommentAdd from "./CommentAdd";
 import Comment from "./Comment";
 import { useState } from "react";
-import {v4 as uuidv4} from 'uuid'
+import { useEffect } from "react";
 
 export default function CommentList(){
-    const [comments, setComments] = useState([{id: uuidv4(), text:'Such a nice video😍', username :'sue'}])
+    const [comments, setComments] = useState(()=>{return readCommentsFromLocalStorage()})
 
     const addHandler = (text)=>{
         setComments((comments)=>{return [...comments,text]})
@@ -14,6 +14,10 @@ export default function CommentList(){
         setComments(comments.filter((comment)=>{return comment.id !== deleted.id}))
     }
 
+    useEffect(()=>{
+        localStorage.setItem('comments',JSON.stringify(comments))
+    },[comments])
+
     return(
         <>
         <CommentAdd onAdd={addHandler}></CommentAdd>
@@ -22,4 +26,9 @@ export default function CommentList(){
         </ul>
         </>
     )
+}
+
+function readCommentsFromLocalStorage(){
+    const comments = localStorage.getItem('comments')
+    return comments? JSON.parse(comments) : []
 }
