@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike } from "react-icons/ai"
+import { AiOutlineLike, AiFillLike} from "react-icons/ai"
 
 export default function Comment({comment, onDelete}){
     const [isLiked, setIsLiked] = useState(false)
