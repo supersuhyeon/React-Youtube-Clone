@@ -13,15 +13,14 @@ function App() {
   return (
     <>
     <LightModeProvider>
-    <SearchHeader></SearchHeader>
-
-    <YoutubeApiProvider>
-     <QueryClientProvider client={queryClient}>
-     <ReactQueryDevtools initialIsOpen={false} />
+      <SearchHeader></SearchHeader>
+        <YoutubeApiProvider>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
       <Outlet></Outlet>
       <ThemeModeBtn></ThemeModeBtn>
-     </QueryClientProvider>
-    </YoutubeApiProvider>
+          </QueryClientProvider>
+        </YoutubeApiProvider>
     </LightModeProvider>
     
     </>
