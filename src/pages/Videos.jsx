@@ -11,14 +11,15 @@ export default function Videos(){
     const {isLoading, error, data:videos} = useQuery(['videos', keyword], ()=> youtube.search(keyword), {staleTime: 1000 * 60 * 1})
 
     return(
-        <>
-        {videos && <h1 className="text-2xl font-semibold mb-4">Total video numbers : {videos.length}</h1>}
+        <section className="flex pb-5">
+        <div>
         {isLoading && <p>Loading....</p>}
         {error && <p>something is wrong😥</p>}
         {videos && <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 gap-y-4">
             {videos.map((video)=>{return <VideoCard key={video.id} video={video}></VideoCard>})}
             </ul>}
-        </>
+        </div>
+        </section>
       
     )
 }

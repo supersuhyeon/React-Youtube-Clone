@@ -13,14 +13,17 @@ function App() {
   return (
     <>
     <LightModeProvider>
+        <div className='flex'>
       <SearchHeader></SearchHeader>
         <YoutubeApiProvider>
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} />
-      <Outlet></Outlet>
-      <ThemeModeBtn></ThemeModeBtn>
+              <Outlet></Outlet>
+              <ThemeModeBtn></ThemeModeBtn>
+              
           </QueryClientProvider>
         </YoutubeApiProvider>
+        </div>
     </LightModeProvider>
     
     </>
