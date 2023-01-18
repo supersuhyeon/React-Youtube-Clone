@@ -1,6 +1,6 @@
 ## React Youtube Clone Coding
 
-![ezgif com-gif-maker (52)](https://user-images.githubusercontent.com/94214512/204415188-396f186d-8aef-4979-a585-fd2139da159a.gif) <br>
+![ezgif com-gif-maker (63)](https://user-images.githubusercontent.com/94214512/213102750-e57170f2-1672-40c4-a453-fb895ecc0227.gif)<br>
 This is a Youtube clone project that helped me to practice how to communicate with a network using Axios & read open source APIs to apply to my project.<br>
 [Youtube Clone Coding](https://darling-cheesecake-c962f9.netlify.app/)
 
