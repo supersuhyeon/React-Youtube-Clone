@@ -5,7 +5,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
 
 body.light {
-  @apply bg-zinc-100 text-gray-900;
+  @apply bg-zinc-300 text-gray-900;
+}
+
+body.light .navbar{
+ background-color: rgb(244 244 245);
+ color: rgb(17 24 39);
+}
+
+body.light .text-white{
+  color: rgb(17 24 39);
+}
+
+ body.light .bg-black{
+ @apply bg-red-600;
 }
 
 body{
@@ -14,7 +27,7 @@ body{
   position: relative;
   padding: 2rem 1.2rem 0 6.75rem;
   @apply flex flex-col items-center;
-  @apply bg-zinc-900 text-gray-50;
+  @apply bg-zinc-800 text-gray-50;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

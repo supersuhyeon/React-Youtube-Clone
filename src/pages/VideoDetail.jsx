@@ -20,13 +20,13 @@ export default function VideoDetail(){
                 title={title}
                 ></iframe>
 
-        <div className="p-8">
+        <div className="py-4">
            <h2 className="text-xl font-bold">{title}</h2>
            <ChannelInfo id={channelId} name={channelTitle}></ChannelInfo>
            <pre className="whitespace-pre-wrap">{description}</pre>
         </div>
 
-        <div className="p-8">
+        <div className="py-4">
          <CommentList></CommentList>
         </div>
       </article>

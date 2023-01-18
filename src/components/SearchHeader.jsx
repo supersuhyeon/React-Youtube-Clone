@@ -75,7 +75,7 @@ export default function SearchHeader(){
                 onChange={(e) => setText(e.target.value)}
                 />
                 <button className='absolute top-0 bottom-0 right-2'>
-                    <BsSearch className='text-white' />
+                    <BsSearch className='text-gray-50' />
                 </button>
                 </form>
             </div>
