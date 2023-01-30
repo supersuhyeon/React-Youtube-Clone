@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Header renders correctly 1`] = `
+Array [
+  <div
+    className="navbar fixed top-0 left-0 h-full bg-zinc-900 text-white pt-6 px-6 pb-8 ease-in-out duration-300 z-50"
+  >
+    <div
+      className="h-full flex flex-col overflow-hidden"
+    >
+      <div
+        className="grid grid-cols-[max-content_1fr] justify-items-end items-center mb-10 p-3"
+      >
+        <svg
+          className="nav-toggle"
+          fill="none"
+          height="1em"
+          onClick={[Function]}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="3"
+            x2="21"
+            y1="12"
+            y2="12"
+          />
+          <line
+            x1="3"
+            x2="21"
+            y1="6"
+            y2="6"
+          />
+          <line
+            x1="3"
+            x2="21"
+            y1="18"
+            y2="18"
+          />
+        </svg>
+        <div
+          className="ml-4 font-bold"
+        >
+          <a
+            className="flex items-center"
+            href="/"
+            onClick={[Function]}
+          >
+            <svg
+              className="text-red-600 text-2xl"
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 1024 1024"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M941.3 296.1a112.3 112.3 0 0 0-79.2-79.3C792.2 198 512 198 512 198s-280.2 0-350.1 18.7A112.12 112.12 0 0 0 82.7 296C64 366 64 512 64 512s0 146 18.7 215.9c10.3 38.6 40.7 69 79.2 79.3C231.8 826 512 826 512 826s280.2 0 350.1-18.8c38.6-10.3 68.9-40.7 79.2-79.3C960 658 960 512 960 512s0-146-18.7-215.9zM423 646V378l232 133-232 135z"
+              />
+            </svg>
+            <p
+              className="ml-1"
+            >
+              Youtube
+            </p>
+          </a>
+        </div>
+      </div>
+      <ul>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <li
+            className="grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              />
+            </svg>
+            <p>
+              Home
+            </p>
+          </li>
+        </a>
+        <li
+          className="grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M2 3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H2.992A.993.993 0 0 1 2 20.007V3.993zM4 5v14h16V5H4zm6.622 3.415l4.879 3.252a.4.4 0 0 1 0 .666l-4.88 3.252a.4.4 0 0 1-.621-.332V8.747a.4.4 0 0 1 .622-.332z"
+              />
+            </g>
+          </svg>
+          <p>
+            Shorts
+          </p>
+        </li>
+        <li
+          className="grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0V0z"
+              fill="none"
+            />
+            <path
+              d="M4 6h16v2H4zm2-4h12v2H6zm14 8H4c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm0 10H4v-8h16v8zm-10-7.27v6.53L16 16z"
+            />
+          </svg>
+          <p>
+            Subscribe
+          </p>
+        </li>
+        <li
+          className="grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"
+            />
+          </svg>
+          <p>
+            Playlist
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>,
+  <div
+    className="fixed top-3 right-3 z-30"
+  >
+    <form
+      className="relative"
+      onSubmit={[Function]}
+    >
+      <input
+        className="w-32 p-2 outline-none bg-black text-gray-50 focus:w-52 transition-all shadow-2xl"
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+        value=""
+      />
+      <button
+        className="absolute top-0 bottom-0 right-2"
+      >
+        <svg
+          className="text-gray-50"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          />
+        </svg>
+      </button>
+    </form>
+  </div>,
+]
+`;

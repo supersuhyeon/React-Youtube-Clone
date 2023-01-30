@@ -25,21 +25,12 @@ body{
   width: 100vw;
   height: 100vh;
   position: relative;
-  padding: 2rem 1.2rem 0 6.75rem;
-  @apply flex flex-col items-center;
+  padding: 1rem 1.2rem 0 6.75rem;
   @apply bg-zinc-800 text-gray-50;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Poppins', sans-serif;
-}
-
-body.padding{
-  padding: 2rem 1.2rem 0 16rem;
-}
-
-#root{
-  /* @apply w-full max-w-screen-2xl; */
 }
 
 .navbar{
@@ -48,4 +39,21 @@ body.padding{
 
 .expander{
   width: 250px;
+}
+
+@media (max-width: 639px) {
+
+  body{
+    padding: 1rem 1rem 0 4rem;
+  }
+
+  .navbar{
+    width: 50px;
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .expander{
+    width: 160px;
+  }
 }

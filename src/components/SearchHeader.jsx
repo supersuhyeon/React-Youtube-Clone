@@ -26,7 +26,6 @@ export default function SearchHeader(){
     const handleToggleClick = ()=>{
         const navbar = document.querySelector('.navbar')
         navbar.classList.toggle('expander')
-        document.body.classList.toggle('body-padding')
     }
 
     return(
@@ -65,8 +64,8 @@ export default function SearchHeader(){
             </div>
             </div>
 
-            <div className='fixed top-0 right-0 left-0 z-30 p-3'>
-                <form className='flex justify-end relative' onSubmit={onSubmitHandler}>
+            <div className='fixed top-3 right-3 z-30'>
+                <form className='relative' onSubmit={onSubmitHandler}>
                 <input
                 className='w-32 p-2 outline-none bg-black text-gray-50 focus:w-52 transition-all shadow-2xl'
                 type='text'
