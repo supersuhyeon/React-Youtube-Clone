@@ -11,10 +11,11 @@ This is a Youtube clone project that helped me to practice how to communicate wi
 3. Use React router's components and hooks like outlet, useParams, useLocation, and useNavigate
 4. Use React-query to manage asynchronous requests and data effectively
 5. Practice TailwindCSS
+6. Testing project - Unit test, intergration test, E2E test
 
 ### Languages
 
-React, TailwindCSS
+React, TailwindCSS, JEST, React testing library, cypress
 
 ### Features
 
@@ -319,8 +320,149 @@ export default function Videos() {
 }
 ```
 
+5. Practice unit test, integration test, E2E test <br>
+   According to the Google Test Automation Conference, they suggested the Test Pyramid which is unit-integration-E2E.
+   It is recommended to implement the total test weight according to the figure shown below.<br>
+
+```html
+(1) End-To-End Testing (UI Testing) - 10% <br />
+(2) Integrating Testing - 20% <br />
+(3) Unit Testing - 70%
+```
+
+These are very useful APIs during the test.
+
+- Unit test & Integration test<br>
+  1)JEST : Mocking Methods, Matcher, snapshot testing <br>
+  2)React testing library : render(),screen(), Varient+Queries, MemoryRouter(), userEvent, waitFor()...etc <br>
+
+```js
+//unit test - dynamic state component
+export default function InputTest() {
+  const [text, setText] = useState("");
+  const navigate = useNavigate();
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    navigate(`/albums/${text}`);
+  };
+
+  <div>
+    <form onSubmit={onSubmitHandler}>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <button>
+        <BsSearch />
+      </button>
+    </form>
+  </div>;
+}
+```
+
+```js
+describe("InputTest", () => {
+  it("navigates to the results page when the search button is clicked", () => {
+    const searchKeyword = "testing-keyword";
+
+    render(
+      // to make a react-router environment, you should use MemoryRouter
+      <MemoryRouter initialEntries={["/home"]}>
+        <Routes>
+          <Route path="/home" element={<InputTest />}></Route>
+          <Route
+            path={`/albums/${searchKeyword}`}
+            element={<p>{searchKeyword}</p>}
+          ></Route>
+        </Routes>
+      </MemoryRouter>
+    );
+    const searchInput = screen.getByRole("textbox");
+    const searchButton = screen.getByRole("button");
+
+    userEvent.type(searchInput, searchKeyword);
+    userEvent.click(searchButton); //when searchButton is clicked, it should show the second route's component.
+
+    expect(screen.getByText(searchKeyword)).toBeInTheDocument();
+  });
+});
+```
+
+```js
+//Integration test for VideoDetail.jsx
+//...
+import RelatedVideos from "../../components/RelatedVideos";
+import ChannelInfo from "../../components/ChannelInfo";
+
+jest.mock("../../components/ChannelInfo");
+jest.mock("../../components/RelatedVideos");
+
+describe("VideoDetail", () => {
+  afterEach(() => {
+    ChannelInfo.mockReset();
+    RelatedVideos.mockReset();
+  });
+
+  it("renders video item details", () => {
+    render(
+      withRouter(<Route path="/" element={<VideoDetail />} />, {
+        state: { video: fakeVideo },
+      })
+    );
+
+    const { title, channelId, channelTitle } = fakeVideo.snippet;
+    expect(screen.getByTitle(title)).toBeInTheDocument();
+    expect(RelatedVideos.mock.calls[0][0]).toStrictEqual({ id: fakeVideo.id }); //First argument of first called RelatedVideo's mock module
+    expect(ChannelInfo.mock.calls[0][0]).toStrictEqual({
+      //First argument of first called ChannelInfo's mock module
+      id: channelId,
+      name: channelTitle,
+    });
+  });
+});
+```
+
+- E2E test<br>
+  Cypress is an open source project and a tool for End to End (E2E) testing.
+  The test checks the part that is directly exposed to the user from the user's point of view.
+  Cypress is really good in terms of efficiency as you can check much faster than testing manually.<br>
+  Cypress - get(), should(), visit(), fixture(), click(), type()...etc
+
+```js
+<reference types="cypress" />;
+import "@testing-library/cypress/add-commands";
+//this extends Cypress's cy commands
+
+describe("Yotube App", () => {
+  beforeEach(() => {
+    //if we test with the real api from youtube, it is hard to get the same result due to the fact that the data keeps changing and in cases of emergency like Youtube's unstable servers. So to make sure of the stable test environment, I used fixture to have mock data.
+    cy.intercept("GET", /(mostPopular)/g, {
+      //cy.intercept(method, url, staticResponse)
+      fixture: "popular.json",
+    });
+    cy.intercept("GET", /(search)/g, {
+      fixture: "search.json",
+    });
+    cy.viewport(1200, 800);
+    cy.visit("/");
+  });
+
+  it("renders", () => {
+    cy.findByText("Youtube").should("exist");
+  });
+
+  it("shows popular video first", () => {
+    cy.findByText("Popular Video").should("exist");
+  });
+});
+```
+
 ### Reference Links
 
+[My Korean blog about KEY API from JEST and React testing library](https://blog.naver.com/thvldk0025/223003817870)<br>
 [My Korean blog about how to use react router](https://blog.naver.com/thvldk0025/222932826787)<br>
 [My Korean blog about how to use react query](https://blog.naver.com/thvldk0025/222933548942)<br>
 [My Korean blog about difference between axios and fetch, how to use 'get' method](https://blog.naver.com/thvldk0025/222937990606)<br>
@@ -329,6 +471,7 @@ export default function Videos() {
 [React router](https://reactrouter.com/en/main)<br>
 [React query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)<br>
 [youtube data api reference](https://developers.google.com/youtube/v3/docs)<br>
+[cypress fixture shortcut](https://docs.cypress.io/api/commands/fixture#Shortcuts)<br>
 
 ### Self-reflection
 

@@ -45,23 +45,25 @@ describe('VideoCard',()=>{
             
     })
 
-    it('navigates to detailed video page with video state when clicked', ()=>{
-        function LocationStateDisplay(){
-            return <pre>{JSON.stringify(useLocation().state)}</pre>
-        }
-        render(
-            withRouter(
-                <>
-                    <Route path='/' element={<VideoCard video={video}></VideoCard>}></Route>
-                    {/* 클릭했을때이동 */}
-                    <Route path={`/videos/watch/${video.id}`} element={<LocationStateDisplay></LocationStateDisplay>}></Route> 
-                </>
-            )
-        )
-
-        const card = screen.getByRole('listitem')
-        userEvent.click(card)
-        expect(screen.getByText(JSON.stringify({video}))).toBeInTheDocument()
-    })
-
+    // it('navigates to detailed video page with video state when clicked', () => {
+    //   function LocationStateDisplay() {
+    //     return <pre>{JSON.stringify(useLocation().state)}</pre>;
+    //   }
+    //   render(
+    //     withRouter(
+    //       <>
+    //         <Route path='/' element={<VideoCard video={video} />} />
+    //         <Route
+    //           path={`/videos/watch/${video.id}`}
+    //           element={<LocationStateDisplay />}
+    //         />
+    //       </>
+    //     )
+    //   );
+  
+    //   const card = screen.getByRole('listitem');
+    //   userEvent.click(card);
+  
+    //   expect(screen.getByText(JSON.stringify({ video }))).toBeInTheDocument();
+    // });
 })

@@ -18,11 +18,13 @@ describe('VideoDetail', () => {
   
     it('renders video item details', () => {
       render(
-        withRouter(<Route path='/' element={<VideoDetail />} />, {
+        withRouter(<Route path='/' element={<VideoDetail />} />
+        , {
           pathname: '/',
           state: { video: fakeVideo },
           key: 'fake-key',
-        })
+        }
+        )
       );
   
       const { title, channelId, channelTitle } = fakeVideo.snippet;
