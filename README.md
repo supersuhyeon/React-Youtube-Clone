@@ -324,10 +324,10 @@ export default function Videos() {
    According to the Google Test Automation Conference, they suggested the Test Pyramid which is unit-integration-E2E.
    It is recommended to implement the total test weight according to the figure shown below.<br>
 
-```html
-(1) End-To-End Testing (UI Testing) - 10% <br />
-(2) Integrating Testing - 20% <br />
-(3) Unit Testing - 70%
+```
+   (1) End-To-End Testing (UI Testing) - 10%
+   (2) Integrating Testing - 20%
+   (3) Unit Testing - 70%
 ```
 
 These are very useful APIs during the test.
