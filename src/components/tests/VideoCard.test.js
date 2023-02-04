@@ -53,7 +53,8 @@ describe('VideoCard',()=>{
             withRouter(
                 <>
                     <Route path='/' element={<VideoCard video={video}></VideoCard>}></Route>
-                    <Route path={`/videos/watch/${video.id}`} element={<LocationStateDisplay></LocationStateDisplay>}></Route>
+                    {/* 클릭했을때이동 */}
+                    <Route path={`/videos/watch/${video.id}`} element={<LocationStateDisplay></LocationStateDisplay>}></Route> 
                 </>
             )
         )
