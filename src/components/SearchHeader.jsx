@@ -73,7 +73,7 @@ export default function SearchHeader(){
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 />
-                <button className='absolute top-0 bottom-0 right-2'>
+                <button aria-label='searchbtn' className='absolute top-0 bottom-0 right-2'>
                     <BsSearch className='text-gray-50' />
                 </button>
                 </form>

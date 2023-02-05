@@ -221,6 +221,7 @@ Array [
         value=""
       />
       <button
+        aria-label="searchbtn"
         className="absolute top-0 bottom-0 right-2"
       >
         <svg
