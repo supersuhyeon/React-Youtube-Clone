@@ -23,9 +23,15 @@ export default function SearchHeader(){
         return setText(keyword || '')
     },[keyword])
 
+
     const handleToggleClick = ()=>{
         const navbar = document.querySelector('.navbar')
         navbar.classList.toggle('expander')
+    }
+
+    const handleRemoveToggle = ()=>{
+        const navbar = document.querySelector('.navbar')
+        navbar.classList.remove('expander')
     }
 
     return(
@@ -37,26 +43,26 @@ export default function SearchHeader(){
                     <div className='ml-4 font-bold'>
                         <Link to='/' className='flex items-center'>
                         <AiFillYoutube className="text-red-600 text-2xl"></AiFillYoutube>
-                        <p className='ml-1'>Youtube</p>
+                        <p className='ml-1' onClick={handleRemoveToggle}>Youtube</p>
                         </Link>
                     </div>
                 </div>
                <ul>
                     <Link to='/'>
-                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400'>
+                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400' onClick={handleRemoveToggle}>
                         <HiHome></HiHome>
                         <p>Home</p>
                     </li>
                     </Link>
-                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400'>
+                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400' onClick={handleRemoveToggle}>
                         <RiMovieLine></RiMovieLine>
                         <p>Shorts</p>
                     </li>
-                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400'>
+                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400' onClick={handleRemoveToggle}>
                         <MdOutlineSubscriptions></MdOutlineSubscriptions>
                         <p>Subscribe</p>
                     </li>
-                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400'>
+                    <li className='grid grid-cols-[max-content_1fr] items-center gap-4 p-3 text-white rounded mb-4 transition-all hover:bg-slate-400' onClick={handleRemoveToggle}>
                         <MdVideoLibrary></MdVideoLibrary>
                         <p>Playlist</p>
                     </li>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom"
 import ChannelInfo from "../components/ChannelInfo";
 import CommentList from "../components/CommentList";
@@ -6,6 +7,13 @@ import RelatedVideos from "../components/RelatedVideos";
 export default function VideoDetail(){
     const {state:{video}} = useLocation()
     const {title, channelId, channelTitle, description} = video.snippet;
+
+    useEffect(()=>{
+      const navbar = document.querySelector('.navbar')
+      if(navbar !==null && navbar.classList.contains('expander')){
+         navbar.classList.remove('expander')
+      }
+    })
 
     return(
        <section className="flex flex-col lg:flex-row">
