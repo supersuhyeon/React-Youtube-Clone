@@ -1,9 +1,6 @@
 import axios from 'axios'
 
 export default class FakeYoutube{
-    constructor(){
-
-    }
 
     async search(keyword){
         return keyword? this.#searchByKeyword(keyword) : this.#mostPopular() //private 함수 클래스 외부에서는 호출불가능

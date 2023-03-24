@@ -88,19 +88,82 @@ Before getting the real Youtube data API, I would rather have a mock data file s
 - Channels<br>
   https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key=[YOUR_API_KEY]
 
+3. Create two separate files - one for the network logic of mock data, and the other for the real YouTube API.
+
+```js
+// api - FakeYoutube.js
+export default class FakeYoutube {
+  async search(keyword) {
+    return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular(); //private 함수 클래스 외부에서는 호출불가능
+  }
+
+  async #searchByKeyword() {
+    return axios
+      .get(`/videos/search.json`)
+      .then((res) => res.data.items)
+      .then((items) => items.map((item) => ({ ...item, id: item.id.videoId }))); //popular과 동일한 데이터 문자열로 맞춰주기
+  }
+
+  async #mostPopular() {
+    return axios.get(`/videos/search.json`).then((res) => res.data.items);
+  }
+}
+```
+
+```js
+// api - Youtube.js
+export default class Youtube {
+  constructor() {
+    this.httpClient = axios.create({
+      baseURL: "https://www.googleapis.com/youtube/v3",
+      params: { key: process.env.REACT_APP_YOUTUBE_API_KEY },
+    });
+  }
+
+  async search(keyword) {
+    return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular(); //private 함수 클래스 외부에서는 호출불가능
+  }
+
+  async #searchByKeyword(keyword) {
+    return this.httpClient
+      .get("search", {
+        params: {
+          part: "snippet",
+          maxResults: 25,
+          type: "video",
+          q: keyword,
+        },
+      })
+      .then((res) => res.data.items)
+      .then((items) => items.map((item) => ({ ...item, id: item.id.videoId }))); //popular과 동일한 데이터 문자열로 맞춰주기
+  }
+
+  async #mostPopular() {
+    return this.httpClient
+      .get("videos", {
+        params: {
+          part: "snippet",
+          maxResults: 25,
+          chart: "mostPopular",
+        },
+      })
+      .then((res) => res.data.items);
+  }
+}
+```
+
+4. Create an instance in the YoutubeApiContext and pass it to the value prop provided by the provider
+
 ```js
 //context - YoutubeApiContext.jsx
-
 import { createContext, useContext } from "react";
 import Youtube from "../api/youtube";
-import YoutubeClient from "../api/youtubeClient";
-// import FakeYoutubeClient from "../api/fakeYoutubeClient";
+// import FakeYoutube from "../api/fakeYoutube";
 
 export const YoutubeApiContext = createContext();
 
-// const client = new FakeYoutubeClient(); ---> mock data
-const client = new YoutubeClient(); //---> real data
-const youtube = new Youtube(client);
+// const youtube = new FakeYoutube(); ---> mock data
+const youtube = new Youtube(); // ---> real youtube api data
 
 export function YoutubeApiProvider({ children }) {
   return (
@@ -115,66 +178,23 @@ export function useYoutubeApi() {
 }
 ```
 
-```js
-// api - youtube.js
-export default class Youtube {
-  constructor(apiClient) {
-    this.apiClient = apiClient;
-  }
-
-  async search(keyword) {
-    return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular(); //private function
-  }
-
-  async #searchByKeyword(keyword) {
-    return this.apiClient
-      .search({
-        params: {
-          part: "snippet",
-          maxResults: 25,
-          type: "video",
-          q: keyword,
-        },
-      })
-      .then((res) => res.data.items)
-      .then((items) => items.map((item) => ({ ...item, id: item.id.videoId })));
-    // To match up the identical id's value with #mostPopular
-  }
-
-  async #mostPopular() {
-    return this.apiClient
-      .videos({
-        params: {
-          part: "snippet",
-          maxResults: 25,
-          chart: "mostPopular",
-        },
-      })
-      .then((res) => res.data.items);
-  }
-}
-```
+5. By separating the network logic from the components, It is improved the readability and maintainability.
 
 ```js
-// api - youtubeClient.js
-import axios from "axios";
+// Videos.jsx
+export default function Videos() {
+  const { youtube } = useYoutubeApi();
+  const {
+    isLoading,
+    error,
+    data: videos,
+  } = useQuery(["videos", keyword], () => youtube.search(keyword), {
+    staleTime: 1000 * 60 * 1,
+  });
 
-export default class YoutubeClient {
-  constructor() {
-    this.httpClient = axios.create({
-      //Axios instance
-      baseURL: "https://www.googleapis.com/youtube/v3",
-      params: { key: process.env.REACT_APP_YOUTUBE_API_KEY }, //object
-    });
-  }
-
-  async search(params) {
-    return this.httpClient.get("search", params);
-  }
-
-  async videos(params) {
-    return this.httpClient.get("videos", params);
-  }
+  return(
+    //..codes
+  )
 }
 ```
 
